@@ -10,10 +10,7 @@ const Home = () => {
 
   useEffect(() => {
     getProductList()
-      .then(({ data }) => {
-        console.log(data);
-        setProductList(data);
-      })
+      .then(({ data }) => setProductList(data))
       .catch(error => setError(error));
   }, []);
 
