@@ -9,7 +9,7 @@ export const Layout = () => {
       <Header>
         <Navigation>
           <Link to="/">Home</Link>
-          <Link to="/movies">Movies</Link>
+          <Link to="/cart">Cart</Link>
         </Navigation>
       </Header>
       <main>
