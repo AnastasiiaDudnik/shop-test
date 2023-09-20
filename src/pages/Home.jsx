@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getProductList, addToCart } from 'services/productsAPI';
+import { getProductList } from 'services/productsAPI';
 import { ListOfMovies } from './Home.styled';
+import { useCart } from 'services/cartContext';
 
 const Home = () => {
   const [productList, setProductList] = useState([]);
   const location = useLocation();
   const [error, setError] = useState(null);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     getProductList()

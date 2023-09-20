@@ -1,20 +1,22 @@
-import { useState, useEffect } from 'react';
-import { getCart } from 'services/productsAPI';
+// import { useState, useEffect } from 'react';
+// import { getCart } from 'services/productsAPI';
+import { useCart } from 'services/cartContext';
 
 const Cart = () => {
-  const [cart, setCart] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    getCart()
-      .then(({ data: { items } }) => setCart(items))
-      .catch(error => setError(error));
-  }, []);
+  const { cart, error } = useCart();
 
   return (
     <>
       {error && <h1>{error.message}</h1>}
-      <li>{cart}</li>
+      {cart ? (
+        <ul>
+          {cart.map(({ _id, name }) => (
+            <li key={_id}>{name}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>Your cart is empty.</p>
+      )}
     </>
   );
 };
