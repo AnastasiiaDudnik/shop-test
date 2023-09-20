@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getProductList } from 'services/productsAPI';
+import { getProductList, addToCart } from 'services/productsAPI';
 import { ListOfMovies } from './Home.styled';
 
 const Home = () => {
@@ -14,6 +14,12 @@ const Home = () => {
       .catch(error => setError(error));
   }, []);
 
+  const handleClick = id => {
+    addToCart(id)
+      .then(console.log('added to cart'))
+      .catch(error => setError(error));
+  };
+
   return (
     <>
       {error && <h1>{error.message}</h1>}
@@ -26,7 +32,9 @@ const Home = () => {
             </Link>
             <p>{color}</p>
             <p>{price} UAH</p>
-            <button>Add to cart</button>
+            <button type="button" onClick={() => handleClick(_id)}>
+              Add to cart
+            </button>
           </li>
         ))}
       </ListOfMovies>
