@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://sb-shop.onrender.com/';
+// axios.defaults.baseURL = 'https://sb-shop.onrender.com/';
+axios.defaults.baseURL = 'http://localhost:3001/';
 
 export const getProductList = async () => {
   try {
