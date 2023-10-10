@@ -2,6 +2,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import { getProduct } from 'services/productsAPI';
 import { Loader } from 'components/Loader/Loader';
+// import { getCookie } from 'services/cookies';
 
 const Product = () => {
   const { id } = useParams();
@@ -13,6 +14,12 @@ const Product = () => {
       .then(({ data }) => setProduct(data.result))
       .catch(error => setError(error));
   }, [id]);
+
+  // const guestId = getCookie('guestID');
+  // console.log(guestId);
+
+  // const guestId = document.cookie;
+  // console.log(guestId);
 
   const { name, price } = product;
 
