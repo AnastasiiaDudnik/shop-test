@@ -12,16 +12,20 @@ const Home = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
+    const guestId = Cookies.get('guest');
+    if (!guestId) {
+      getProductList()
+        .then(({ data: { id } }) => {
+          Cookies.set('guest', id);
+        })
+        .catch(error => setError(error));
+    }
     getProductList()
-      .then(({ data: { result, id } }) => {
+      .then(({ data: { result } }) => {
         setProductList(result);
-        Cookies.set('guest', id);
       })
       .catch(error => setError(error));
   }, []);
-
-  const guest = Cookies.get('guest');
-  console.log(guest);
 
   const handleClick = id => {
     addToCart(id)
