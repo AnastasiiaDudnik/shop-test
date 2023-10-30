@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { getProductList } from 'services/productsAPI';
 import { ListOfMovies } from './Home.styled';
 import { useCart } from 'services/cartContext';
-// import { getCookie } from 'services/cookies';
+import Cookies from 'js-cookie';
 
 const Home = () => {
   const [productList, setProductList] = useState([]);
@@ -13,17 +13,15 @@ const Home = () => {
 
   useEffect(() => {
     getProductList()
-      .then(({ data }) => {
-        setProductList(data);
+      .then(({ data: { result, id } }) => {
+        setProductList(result);
+        Cookies.set('guest', id);
       })
       .catch(error => setError(error));
   }, []);
 
-  // const guestId = getCookie('guestID');
-  // console.log(guestId);
-
-  const guestId = document.cookie.split(';');
-  console.log(guestId);
+  const guest = Cookies.get('guest');
+  console.log(guest);
 
   const handleClick = id => {
     addToCart(id)
