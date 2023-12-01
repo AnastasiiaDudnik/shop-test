@@ -1,16 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-// import { getProductList } from 'services/productsAPI';
+import { getProductList } from 'services/productsAPI';
 import { ListOfMovies } from './Home.styled';
 import { useCart } from 'services/cartContext';
-// import Cookies from 'js-cookie';
-
-import axios from 'axios';
-
-const instance = axios.create({
-  baseURL: 'http://localhost:3001/',
-  withCredentials: true,
-});
 
 const Home = () => {
   const [productList, setProductList] = useState([]);
@@ -19,8 +11,7 @@ const Home = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    instance
-      .get('products')
+    getProductList()
       .then(({ data }) => {
         console.log(data);
         setProductList(data);
