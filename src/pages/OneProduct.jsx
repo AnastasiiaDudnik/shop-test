@@ -2,6 +2,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import { getProduct } from 'services/productsAPI';
 import { Loader } from 'components/Loader/Loader';
+import { AddToCartBtn } from 'components/AddToCart/AddToCartBtn';
 
 const Product = () => {
   const { id } = useParams();
@@ -28,6 +29,7 @@ const Product = () => {
           <div>
             <h1>{name}</h1>
             <p>Price: {price} UAH</p>
+            <AddToCartBtn id={id} />
           </div>
         )}
       </div>

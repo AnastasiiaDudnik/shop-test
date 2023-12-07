@@ -2,28 +2,28 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getProductList } from 'services/productsAPI';
 import { ListOfMovies } from './Home.styled';
-import { useCart } from 'services/cartContext';
+// import { useCart } from 'services/cartContext';
+import { AddToCartBtn } from 'components/AddToCart/AddToCartBtn';
 
 const Home = () => {
   const [productList, setProductList] = useState([]);
   const location = useLocation();
   const [error, setError] = useState(null);
-  const { addToCart } = useCart();
+  // const { addToCart } = useCart();
 
   useEffect(() => {
     getProductList()
       .then(({ data }) => {
-        console.log(data);
         setProductList(data);
       })
       .catch(error => setError(error));
   }, []);
 
-  const handleClick = id => {
-    addToCart(id)
-      .then(console.log('added to cart'))
-      .catch(error => setError(error));
-  };
+  // const handleClick = id => {
+  //   addToCart(id)
+  //     .then(console.log('added to cart'))
+  //     .catch(error => setError(error));
+  // };
 
   return (
     <>
@@ -37,9 +37,7 @@ const Home = () => {
             </Link>
             <p>{color}</p>
             <p>{price} UAH</p>
-            <button type="button" onClick={() => handleClick(_id)}>
-              Add to cart
-            </button>
+            <AddToCartBtn id={_id} />
           </li>
         ))}
       </ListOfMovies>
