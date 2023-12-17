@@ -16,6 +16,12 @@ export const getProduct = async id => {
   } catch (error) {}
 };
 
+export const getRecentlyViewed = async () => {
+  try {
+    return await axios.get(`products/viewed`);
+  } catch (error) {}
+};
+
 export const getCart = async () => {
   try {
     return await axios.get(`cart`);

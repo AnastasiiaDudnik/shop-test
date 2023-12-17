@@ -12,8 +12,7 @@ const Product = () => {
   useEffect(() => {
     getProduct(id)
       .then(({ data }) => {
-        console.log(data);
-        setProduct(data.result);
+        setProduct(data);
       })
       .catch(error => setError(error));
   }, [id]);
