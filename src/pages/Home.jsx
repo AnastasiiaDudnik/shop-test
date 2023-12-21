@@ -7,7 +7,7 @@ import { AddToCartBtn } from 'components/AddToCart/AddToCartBtn';
 
 const Home = () => {
   const [productList, setProductList] = useState([]);
-  const [recentlyViewed, setRecentlyViewed] = useState([]);
+  const [recentlyViewed, setRecentlyViewed] = useState(null);
   const location = useLocation();
   const [error, setError] = useState(null);
   // const { addToCart } = useCart();
@@ -23,11 +23,12 @@ const Home = () => {
   useEffect(() => {
     getRecentlyViewed()
       .then(({ data }) => {
-        console.log(data);
         setRecentlyViewed(data);
       })
       .catch(error => setError(error));
   }, []);
+
+  console.log(typeof recentlyViewed);
 
   // const handleClick = id => {
   //   addToCart(id)
