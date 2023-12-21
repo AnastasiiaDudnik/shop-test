@@ -28,8 +28,6 @@ const Home = () => {
       .catch(error => setError(error));
   }, []);
 
-  console.log(typeof recentlyViewed);
-
   // const handleClick = id => {
   //   addToCart(id)
   //     .then(console.log('added to cart'))
