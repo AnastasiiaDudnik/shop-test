@@ -9,3 +9,9 @@ export const getCart = async () => {
     return await axios.get('cart');
   } catch {}
 };
+
+export const addToCart = async () => {
+  try {
+    return await axios.post('cart/:id');
+  } catch {}
+};
