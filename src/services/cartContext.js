@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getCart, addToCart as addToCartAPI } from './productsAPI';
+import {
+  getCart,
+  addToCart as addToCartAPI,
+  removeOneFromCart,
+} from './cartAPI';
 
 const CartContext = createContext();
 
@@ -24,8 +28,15 @@ export function CartProvider({ children }) {
       .catch(error => setError(error));
   };
 
+  const removeFromCart = async id => {
+    await removeOneFromCart(id);
+    getCart()
+      .then(({ data: { items } }) => setCart(items))
+      .catch(error => setError(error));
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, error }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, error }}>
       {children}
     </CartContext.Provider>
   );

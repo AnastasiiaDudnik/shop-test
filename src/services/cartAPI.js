@@ -10,8 +10,14 @@ export const getCart = async () => {
   } catch {}
 };
 
-export const addToCart = async () => {
+export const addToCart = async id => {
   try {
-    return await axios.post('cart/:id');
+    return await axios.post(`cart/${id}`);
+  } catch (error) {}
+};
+
+export const removeOneFromCart = async id => {
+  try {
+    return await axios.delete(`cart/${id}`);
   } catch {}
 };

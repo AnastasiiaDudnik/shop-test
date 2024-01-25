@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getCart } from 'services/cartAPI';
+import { DeleteFromCartBtn } from 'components/DeleteFromCart/DeleteFromCartBtn';
 // import { useCart } from 'services/cartContext';
 
 const Cart = () => {
@@ -12,7 +13,9 @@ const Cart = () => {
         setCart(data);
       })
       .catch(error => setError(error));
-  }, []);
+  }, [cart]);
+
+  // const { cart, error } = useCart();
 
   return (
     <>
@@ -20,7 +23,10 @@ const Cart = () => {
       {cart ? (
         <ul>
           {cart.map(({ _id, name }) => (
-            <li key={_id}>{name}</li>
+            <li key={_id}>
+              <p>{name}</p>
+              <DeleteFromCartBtn id={_id} />
+            </li>
           ))}
         </ul>
       ) : (
