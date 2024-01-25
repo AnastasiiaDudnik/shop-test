@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getProductList, getRecentlyViewed } from 'services/productsAPI';
 import { ListOfMovies } from './Home.styled';
-// import { useCart } from 'services/cartContext';
 import { AddToCartBtn } from 'components/AddToCart/AddToCartBtn';
 
 const Home = () => {
@@ -10,7 +9,6 @@ const Home = () => {
   const [recentlyViewed, setRecentlyViewed] = useState(null);
   const location = useLocation();
   const [error, setError] = useState(null);
-  // const { addToCart } = useCart();
 
   useEffect(() => {
     getProductList()
@@ -27,12 +25,6 @@ const Home = () => {
       })
       .catch(error => setError(error));
   }, []);
-
-  // const handleClick = id => {
-  //   addToCart(id)
-  //     .then(console.log('added to cart'))
-  //     .catch(error => setError(error));
-  // };
 
   return (
     <>
