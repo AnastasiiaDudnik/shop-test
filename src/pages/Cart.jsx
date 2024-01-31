@@ -13,7 +13,7 @@ const Cart = () => {
         setCart(data);
       })
       .catch(error => setError(error));
-  }, [cart]);
+  }, []);
 
   // const { cart, error } = useCart();
 
